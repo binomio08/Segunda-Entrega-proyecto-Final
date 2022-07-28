@@ -81,6 +81,14 @@ function actualizarCarrito(carrito) {
 
 }
 
+function mostrarAlert(){
+    Swal.fire({
+        icon: 'success',
+        title: 'Felicitaciones',
+        text: 'Producto agregado al Carrito',
+      })
+}
+
 function renovaeStorage(){
     localStorage.removeItem("carrito"); 
     localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -100,6 +108,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 let carrito = new Carrito(1)
 
 let botones = document.querySelectorAll(".botonDeCompras")
+botones.onclick = mostrarAlert
 let arrayDeBotones = Array.from(botones)
 arrayDeBotones.forEach(boton => {
     boton.addEventListener("click", (e) => {
@@ -108,5 +117,6 @@ arrayDeBotones.forEach(boton => {
         limpiarCarrito()
         actualizarCarrito(carrito)
         renovaeStorage()
+        mostrarAlert()
     })
 })
